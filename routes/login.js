@@ -1,13 +1,17 @@
 const express=require('express')
+const path=require('path')
+
+const rootDir=require('../util/path.js')
 
 const router=express.Router();
 
-router.get('/login',(req,res,next)=>{
-    res.send('<form onsubmit="localStorage.setItem(`user`, document.getElementById(`user`).value)" action="/adduser" method="POST"> <input type="text" name="username" id="user"  placeholder="username"/> <button type="submit">Submit</button></form>')
+router.get('/add-product',(req,res,next)=>{
+    res.sendFile(path.join(rootDir,'views','add-product.html'))
 
 })
-router.post('/adduser',(req,res,next)=>{
-    res.redirect('/')
+router.post('/product',(req,res,next)=>{
+    console.log(req.body);
+    res.redirect('/');
 })
 
 module.exports=router;
